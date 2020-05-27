@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const mockAPIResponse = require("./mockAPI.js");
+
 var aylien = require("aylien_textapi");
 
 //console.log(`Your API key is ${process.env.API_KEY}`);
@@ -26,10 +27,32 @@ app.get("/", function (req, res) {
 });
 
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-	console.log("Example app listening on port 8080!");
+const port = 3000;
+app.listen(port, function () {
+	console.log(`Example app listening on port ${port}!`);
 });
 
 app.get("/test", function (req, res) {
 	res.send(mockAPIResponse);
 });
+
+let data = {};
+app.post("/addData", function (req, res) {
+	data = { message: req.body.message };
+});
+let val = {};
+app.get("/apiData", apiFunctionCall);
+function apiFunctionCall(req, res) {
+	textapi.sentiment(
+		{
+			url:
+				"https://www.theguardian.com/commentisfree/2018/feb/17/steven-pinker-media-negative-news",
+		},
+		function (error, response) {
+			if (error === null) {
+				val = response;
+				console.log(response);
+			}
+		}
+	);
+}
