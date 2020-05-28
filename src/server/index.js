@@ -1,7 +1,12 @@
 var path = require("path");
 const express = require("express");
-
 const app = express();
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const cors = require("cors");
+app.use(cors());
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -38,21 +43,27 @@ app.get("/test", function (req, res) {
 
 let data = {};
 app.post("/addData", function (req, res) {
-	data = { message: req.body.message };
+	console.log(req.body);
+	data = { url: req.body.url };
+	res.send({ msg: "data sent" });
 });
+
 let val = {};
 app.get("/apiData", apiFunctionCall);
 function apiFunctionCall(req, res) {
-	textapi.sentiment(
-		{
-			url:
-				"https://www.theguardian.com/commentisfree/2018/feb/17/steven-pinker-media-negative-news",
-		},
-		function (error, response) {
-			if (error === null) {
-				val = response;
-				console.log(response);
-			}
+	console.log("reaching here in apiData");
+	textapi.sentiment(data, function (error, response) {
+		if (error === null) {
+			val = {
+				polarity: response.polarity,
+				text: response.text,
+				confidence: response.polarity_confidence,
+			};
+			console.log(response);
+			console.log("sending data");
+			res.send(val);
+		} else {
+			console.log("Error At api call");
 		}
-	);
+	});
 }
