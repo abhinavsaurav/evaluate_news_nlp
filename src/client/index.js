@@ -1,13 +1,14 @@
-import { checkForName } from "./js/nameChecker";
+import { checkForURL } from "./js/urlChecker";
 import { handleSubmit } from "./js/formHandler";
+import { postData } from "./js/formHandler";
 import "./styles/base.scss";
 import "./styles/form.scss";
 import "./styles/footer.scss";
 import "./styles/header.scss";
 
-console.log(checkForName);
+// console.log(checkForName);
 
 //alert("I EXIST");
 console.log("CHANGE!!");
 
-export { handleSubmit, checkForName };
+export { handleSubmit, checkForURL };
