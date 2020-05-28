@@ -7,3 +7,9 @@ It utilizes Aylien Api for providing sentiment Analysis.
 The port of the server is set to 3000.
 
 Use npm install to install the dependencies in package.json.
+
+Then `npm run build-prod`
+
+Then `npm run build-dev`
+
+then `npm start`
