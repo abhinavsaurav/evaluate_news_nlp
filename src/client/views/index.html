@@ -13,32 +13,45 @@
     <body>
 
         <header>
-            <div class="">
-                Logo
+            <div class="head">
+                Sentiment Analysis
             </div>
-            <div class="">
-                navigation
+            <div class="head">
+                NLP
             </div>
         </header>
 
         <main>
             <section>
-                <form class="" onsubmit="return handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                <form class="formclass" onsubmit="return handleSubmit(event)">
+                        <span>Enter a URL below:</span><br/>
+                        <span id="example">eg: https://www.theguardian.com/commentisfree/2018/feb/17/steven-pinker-media-negative-news</span>
+                        <center>
+                        <input id="name" type="text" name="input" value="" placeholder="Enter a article or news URL">
+                        <button type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">Submit</button>
+                    </center>
                 </form>
             <section>
 
             <section>
-                <strong>Form Results:</strong>
+                <strong>Sentiment Analysis Results:</strong>
+                <div id="error"></div>
                 <div id="results"></div>
                 <div id="results2"></div>
             </section>
         </main>
 
         <footer>
-            <p>This is a footer</p>
+            <p>&copy; Abhinav Saurav</p>
         </footer>
-
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
     </body>
 </html>

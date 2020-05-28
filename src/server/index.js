@@ -41,12 +41,21 @@ app.get("/test", function (req, res) {
 	res.send(mockAPIResponse);
 });
 
+/**
+ * @description For storing the url
+ */
+
 let data = {};
 app.post("/addData", function (req, res) {
 	console.log(req.body);
 	data = { url: req.body.url };
 	res.send({ msg: "data sent" });
 });
+
+/**
+ * @description Doing the api call to fetch data
+ *
+ */
 
 let val = {};
 app.get("/apiData", apiFunctionCall);
