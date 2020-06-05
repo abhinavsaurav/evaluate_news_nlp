@@ -19,10 +19,10 @@ function handleSubmit(event) {
 		console.log("::: Form Submitted :::");
 		const urlData = { url: formText };
 		console.log(urlData);
-		postData("/addData", urlData).then(async (d) => {
+		postData("http://localhost:3000/addData", urlData).then(async (d) => {
 			console.log("after add data");
 			console.log(d.msg);
-			const response = await fetch("/apiData");
+			const response = await fetch("http://localhost:3000/apiData");
 			try {
 				const dataReceived = await response.json();
 				document.getElementById("error").innerHTML = "";
